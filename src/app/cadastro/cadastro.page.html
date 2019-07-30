@@ -1,11 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>cadastro</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Cadastro</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    Apenas uma tela de cadastro.
-  </div>
+    <div class="ion-padding">
+
+        <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm)">
+
+            <ion-list>
+                <ion-item [class.invalid]="registerForm.controls.name.invalid && registerForm.controls.name.touched">
+                    <ion-label position="floating">Nome</ion-label>
+                    <ion-input type="text" formControlName="name"></ion-input>
+                </ion-item>
+
+                <ion-item [class.invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched">
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input type="email" formControlName="email"></ion-input>
+                </ion-item>
+
+                <ion-item [class.invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched">
+                    <ion-label position="floating">Senha</ion-label>
+                    <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+
+                <ion-item [class.invalid]="registerForm.controls.phone.invalid && registerForm.controls.phone.touched">
+                    <ion-label position="floating">Telefone</ion-label>
+                    <ion-input minlength="14" type="text" name="phone" formControlName="phone" [brmasker]="{phone:true}"></ion-input>
+                </ion-item>
+
+            </ion-list>
+
+            <ion-list class="ion-margin-top">
+                <ion-radio-group formControlName="starterPokemon">
+                    <ion-list-header [class.invalid]="registerForm.controls.starterPokemon.invalid && registerForm.controls.starterPokemon.touched">
+                        <ion-label>Pokémon Inicial</ion-label>
+                    </ion-list-header>
+
+                    <ion-item *ngFor="let radio of radiosArray">
+                        <ion-label>{{radio}}</ion-label>
+                        <ion-radio mode="ios" slot="start" value="{{radio}}"></ion-radio>
+                    </ion-item>
+
+                </ion-radio-group>
+            </ion-list>
+
+            <ion-row class="ion-justify-content-center ion-margin-top">
+                <ion-button type="submit" shape="round" [disabled]="registerForm.invalid">Cadastrar</ion-button>
+            </ion-row>
+
+        </form>
+    </div>
 </ion-content>

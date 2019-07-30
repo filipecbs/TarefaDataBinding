@@ -1,11 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pokemons</ion-title>
+    <ion-title>Pokémons</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    Apenas uma tela de pokemons.
-  </div>
+    <div class="ion-padding">
+        <ion-row>
+            <ion-col size="12" *ngIf="time != 5">Você poderá capturar outro pokémon em {{ time }} segundos.</ion-col>
+        </ion-row>
+        <ion-button (click)="catchPokemon()" [disabled]="time != 5">
+            Catch
+        </ion-button>
+        <ion-list class="ion-padding-top">
+            <app-pokemon-card *ngFor="let pokemon of pokemons" [pokemonInfo]="pokemon" (pokemonClicked)="goToPokemonProfile($event)"></app-pokemon-card>
+        </ion-list>
+    </div>
 </ion-content>
