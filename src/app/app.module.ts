@@ -12,17 +12,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { PokemonService } from './service/pokemon.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     PokemonService,
-    HttpClientModule
+    HttpClientModule,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

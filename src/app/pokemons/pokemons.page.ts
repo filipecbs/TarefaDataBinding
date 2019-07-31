@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../service/pokemon.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-pokemons',
@@ -11,7 +12,7 @@ export class PokemonsPage implements OnInit {
     time:number = 5;
     pokemons = [];
 
-    constructor(private pokemonService: PokemonService) { }
+    constructor(private pokemonService: PokemonService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -47,5 +48,6 @@ export class PokemonsPage implements OnInit {
 
     goToPokemonProfile(id) {
         console.log('Ir para o perfil do pokémon de id', id);
+        this.router.navigate(['profile', id]);
     }
 }

@@ -1,13 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    Apenas uma home.
-  </div>
+    <ion-row class="ion-padding-top ion-justify-content-center">
+        <ion-button (click)="openCamera()" shape="round">
+            <ion-icon name="camera">
+                Câmera
+            </ion-icon>
+        </ion-button>
+    </ion-row>
+    <img src="{{ myPhoto }}">
+    <h4>{{ myPosition }}</h4>
+    <ion-button (click)="openGallery()">
+        Galeria
+    </ion-button>
+    <ion-button (click)="getGeolocation()">
+        Geolocalização
+    </ion-button>
 </ion-content>
